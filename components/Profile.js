@@ -1,30 +1,30 @@
 import React, { Component } from 'react';
 import { View, StyleSheet, TextInput, Text, TouchableOpacity } from 'react-native';
 // import Header from './Header';
-class Main extends Component {
-  state = { name: '' }
+import { connect } from 'react-redux';
 
-handleNameInput = name => this.setState({ name });
+const mapStateToProps = (state) => {
+  return ({ user: state.auth.user })
+}
+
+class Profile extends Component {
+//   state = { name: '' }
+//
+// handleNameInput = name => this.setState({ name });
 
 pressSecretary = () => {
-  this.props.navigation.navigate('Chat', { name: this.state.name })
+  this.props.navigation.navigate('Forum', { name: this.props.user.name })
 };
 
   render() {
+    let user = this.props.user
+    console.log("main mounted", this.props)
     return (
       <View>
 
-        <Text style={styles.title}>Name Input:
+        <Text style={styles.title}>Main Profile View
         </Text>
-        <TextInput
-          style={styles.nameInput}
-          placeholder='Enter Name'
-          value={this.state.name}
-          onChangeText={this.handleNameInput}
-        />
-        <TouchableOpacity onPress={this.pressSecretary}>
-          <Text style={styles.buttonText}>Next</Text>
-        </TouchableOpacity>
+        
 
       </View>
     );
@@ -49,4 +49,4 @@ const styles = StyleSheet.create({nameInput: { // 3. <- Add a style for the inpu
       fontSize: offset
     }
   ,});
-export default Main;
+export default connect(mapStateToProps)(Profile);

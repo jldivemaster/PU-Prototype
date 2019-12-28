@@ -5,9 +5,12 @@ import { SIGN_IN, SIGN_OUT, CREATE_MESSAGES, FETCH_MESSAGES,
 // import messages from '../apis/messages';
 import history from  '../history';
 
+let user = { name: 'Jason', id: 1 }
+
 export const signIn = () => {
   return {
-    type: SIGN_IN
+    type: SIGN_IN,
+    payload: user
   }
 };
 

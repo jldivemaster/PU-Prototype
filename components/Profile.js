@@ -21,7 +21,7 @@ pressSecretary = () => {
     let user = this.props.user
     console.log("main mounted", this.props)
     return (
-      <View>
+      <View style={{ flex: 1 }}>
 
         <Text style={styles.title}>Main Profile View
         <CycleComponent width='300' height='240' hideLegend='true' />

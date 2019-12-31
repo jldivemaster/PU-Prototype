@@ -44,6 +44,8 @@ const MainTabNav = createBottomTabNavigator({
     Tracker: { screen: Tracker, navigationOptions: { title: 'Period Tracker' } } },
     { tabBarOptions: { style: { paddingBottom: '20px' }}} )
 const MainContainer = createAppContainer(MainTabNav)
+
+
 const AuthStack = createStackNavigator({ Login: { screen: Login, navigationOptions: { headerTitle: 'Login' } } })
 
 const RootStack = createSwitchNavigator({ Loading: Loading, Auth: AuthStack, Main: MainContainer },

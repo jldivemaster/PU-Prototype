@@ -14,8 +14,6 @@ class CalendarView extends React.Component {
     return(
       <View>
         <Text>My Tracker Calendar View</Text>
-        <Button title='Cycle >' onPress={() => this.props.navigation.navigate('Cycle')} />
-        <Button title='EditData' onPress={() => this.props.navigation.navigate('EditData')} />
         <CalendarPicker />
       </View>
     )

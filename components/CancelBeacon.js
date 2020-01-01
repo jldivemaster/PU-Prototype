@@ -1,15 +1,17 @@
 import React from 'react';
 import { TouchableOpacity, Text, StyleSheet } from 'react-native';
 
-class CancelBeacon extends React.Component {
+class CancelButton extends React.Component {
 
   handleCancelBeacon = () => {
+    // Navigate to Home Screen, clear out Beacon data object, & notify of cancellation!
+
     this.props.nav.navigate('Profile')
+    // this.clearBeaconData().....
     alert("Beacon Cancelled")
   }
 
    render() {
-     console.log(this.props)
      return(
      <TouchableOpacity onPress={this.handleCancelBeacon}>
        <Text style={styles.buttonText}>Cancel</Text>
@@ -18,22 +20,12 @@ class CancelBeacon extends React.Component {
 }
 
 const offset = 24;
-const styles = StyleSheet.create({nameInput: { // 3. <- Add a style for the input
-      height: offset * 2,
-      margin: offset,
-      paddingHorizontal: offset,
-      borderColor: '#111111',
-      borderWidth: 1
-    },
-    title: {
-      marginTop: offset,
-      marginLeft: offset,
-      fontSize: offset
-    },
+const styles = StyleSheet.create({
     buttonText: {
       marginLeft: offset,
-      fontSize: offset
+      fontSize: offset,
+      color: 'red'
     }
-  ,});
+  });
 
-export default CancelBeacon;
+export default CancelButton;

@@ -1,13 +1,13 @@
 // Action Creators are just functions that return an object with an action TYPE k/v pair,
 // and maybe a payload (like the body of a fetch request config object).
-import { SIGN_IN, SIGN_OUT, CREATE_MESSAGES, FETCH_MESSAGES,
-          FETCH_MESSAGESS, EDIT_MESSAGES, DELETE_MESSAGES } from './types';
-// import messages from '../apis/messages';
+// import { SIGN_IN, SIGN_OUT, CREATE_BEACON, FETCH_BEACONS,
+//           FETCH_BEACON, EDIT_BEACON, DELETE_BEACON } from './types';
+// import beacons from '../apis/beacons';
 import history from  '../history';
+const SIGN_IN = 'SIGN_IN';
+const SIGN_OUT = 'SIGN_OUT';
 
-let user = { name: 'Jason', id: 1 }
-
-export const signIn = () => {
+export const signIn = (user) => {
   return {
     type: SIGN_IN,
     payload: user
@@ -20,37 +20,35 @@ export const signOut = () => {
   }
 };
 
-// export const createMessage = formValues => async (dispatch, getState) => {
-//   const { userId } = getState().auth;
-//   const response = await messages.post('/messages', { ...formValues, userId });
+export const createBeacon = formValues => async (dispatch, getState) => {
+  // const { userId } = getState().auth;
+  // const response = await beacons.post('/beacons', { ...formValues, userId });
+  const initBeaconObj = {...getState().beacon, user: getState().auth, product: { type: formValues } }
+  dispatch({ type: CREATE_BEACON, payload: initBeaconObj })
+};
+
+// export const fetchBeacons = () => async dispatch => {
+//   const response = await beacons.get('/beacons');
 //
-//   dispatch({ type: CREATE_MESSAGES, payload: response.data })
-//   // Programmatic nav to redirect user to root path after successful creation:
-//   history.push('/');
+//   dispatch({ type: FETCH_BEACONS, payload: response.data })
 // };
+
+// export const fetchBeacon = (id) => async dispatch => {
+//   const response = await beacon.get(`/beacons/${id}`)
 //
-// export const fetchMessages = () => async dispatch => {
-//   const response = await messages.get('/messages');
-//
-//   dispatch({ type: FETCH_MESSAGESS, payload: response.data })
+//   dispatch({ type: FETCH_BEACON, payload: response.data })
 // };
-//
-// export const fetchMessage = (id) => async dispatch => {
-//   const response = await messages.get(`/messages/${id}`)
-//
-//   dispatch({ type: FETCH_MESSAGES, payload: response.data })
+
+// export const editBeacon = (id, formValues) => async dispatch => {
+  // const response = await beacons.patch(`/beacons/${id}`, formValues);
+
+  // dispatch({ type: EDIT_BEACON, payload: response.data })
+  // history.push('/');
 // };
-//
-// export const editMessage = (id, formValues) => async dispatch => {
-//   const response = await messages.patch(`/messages/${id}`, formValues);
-//
-//   dispatch({ type: EDIT_MESSAGES, payload: response.data })
-//   history.push('/');
-// };
-//
-// export const deleteMessage = (id) => async dispatch => {
-//   await messages.delete(`/messages/${id}`);
-//
-//   dispatch({ type: DELETE_MESSAGES, payload: id });
-//   history.push('/');
-// }
+
+export const deleteBeacon = (id) => async dispatch => {
+  // await beacons.delete(`/beacons/${id}`);
+
+  dispatch({ type: DELETE_BEACON, payload: id });
+  // history.push('/');
+}

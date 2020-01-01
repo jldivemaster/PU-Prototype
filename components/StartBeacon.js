@@ -1,53 +1,37 @@
 import React from 'react';
-import { Text, View, Button, TouchableOpacity, StyleSheet } from 'react-native';
+import { Text, View, Button } from 'react-native';
 import { connect } from 'react-redux';
-import CancelBeacon from './CancelBeacon';
+import CancelButton from './CancelBeacon';
+import NextButton from './NextButton';
 
+// Prepolating Beacon Object for temp data visuals:
 const mapStateToProps = (state) => {
-  return ({ user: state.auth.user })
-}
+  return ({ user: {...state.auth.user, coordinates: {lat: 'XY', long: 'XY'}},
+  currentBeacon: { requester: state.auth.user, product: { type: null, attribute: 'blah' },
+                  location: 'location', time: 'Time Window', status: 'active',
+                  responses: [{ id: 1, responder: 'user1', status: 'Accepted', response: 'Yes' }, { id: 2, responder: 'user2', status: 'Pending', response: 'Yes' }, { id: 3, responder: 'user3', status: 'Declined', response: 'Maybe' }] }
+  })
+};
 
 class StartBeacon extends React.Component {
-
-  pressSecretary = () => {
-    this.props.navigation.navigate('Map')
-  }
 
   // cancelBeacon = () => {
   //   this.props.navigation.navigate('Profile')
   // }
 
   render() {
-    console.log(this.props)
+    // console.log(this.props)
     return (
       <View>
-        <Text>Begin Beacon View - Select Product to Continue:</Text>
-        <CancelBeacon nav={this.props.navigation}/>
-        <TouchableOpacity onPress={this.pressSecretary}>
-          <Text style={styles.buttonText}>Next</Text>
-        </TouchableOpacity>
+        <Text>Welcome `{this.props.user.name}` - Select Product to Continue:</Text>
+        // Pad or Tampon Options Here: Input to beaconobj.product ->
+
+        <NextButton nextRoute='Map' nav={this.props.navigation}/>
+        <Text>or Cancel Beacon below:</Text>
+        <CancelButton nav={this.props.navigation}/>
       </View>
     )
-  }
+  };
 }
-
-const offset = 24;
-const styles = StyleSheet.create({nameInput: { // 3. <- Add a style for the input
-      height: offset * 2,
-      margin: offset,
-      paddingHorizontal: offset,
-      borderColor: '#111111',
-      borderWidth: 1
-    },
-    title: {
-      marginTop: offset,
-      marginLeft: offset,
-      fontSize: offset
-    },
-    buttonText: {
-      marginLeft: offset,
-      fontSize: offset
-    }
-  ,});
 
 export default connect(mapStateToProps)(StartBeacon);

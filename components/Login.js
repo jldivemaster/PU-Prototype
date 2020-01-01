@@ -11,7 +11,7 @@ class Login extends React.Component {
 
   signIn = () => {
     // Call action creator to change State to Signed In
-    this.props.signIn();
+    this.props.signIn({id: 1, name: 'Jason', email: 'email'});
     this.props.navigation.navigate('Main')
   }
 

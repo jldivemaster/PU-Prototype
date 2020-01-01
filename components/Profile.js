@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { View, StyleSheet, TextInput, Text, TouchableOpacity } from 'react-native';
 // import Header from './Header';
 import CycleComponent from './CycleComponent';
+import SelectButton from './SelectButton';
 import { connect } from 'react-redux';
 
 const mapStateToProps = (state) => {
@@ -26,7 +27,7 @@ pressSecretary = () => {
         <Text style={styles.title}>Main Profile View
         <CycleComponent width='300' height='240' hideLegend='true' />
         </Text>
-
+        <SelectButton buttonText='View Active Beacon' nextRoute='ActiveBeaconScreen' nav={this.props.navigation}/>
 
       </View>
     );

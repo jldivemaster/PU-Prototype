@@ -2,10 +2,16 @@ import React, { Component } from 'react';
 import { View, Text } from 'react-native';
 import CancelButton from './CancelBeacon';
 import SelectButton from './SelectButton';
+import { connect } from 'react-redux';
+
+const mapStateToProps = (state) => {
+  return ({ beacon: state.beacon, user: state.auth })
+};
 
 class Map extends Component {
 
   render () {
+    console.log('map view', this.props)
     // Conditional render for stores/meeting locations.
     return (
       <View>
@@ -19,4 +25,4 @@ class Map extends Component {
   }
 };
 
-export default Map;
+export default connect(mapStateToProps)(Map);

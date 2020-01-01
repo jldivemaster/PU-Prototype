@@ -1,32 +1,66 @@
 import React from 'react';
-import { Text, View, Button } from 'react-native';
+import { Text, View, Button, StyleSheet, TouchableOpacity } from 'react-native';
 import { connect } from 'react-redux';
+import { createBeacon } from '../actions'
 import CancelButton from './CancelBeacon';
 import NextButton from './NextButton';
+import RadButtons from './RadButtons';
 
-// Prepolating Beacon Object for temp data visuals:
+// Prepopulating Beacon Object for temp data visuals:
 const mapStateToProps = (state) => {
-  return ({ user: {...state.auth.user, coordinates: {lat: 'XY', long: 'XY'}},
-  currentBeacon: { requester: state.auth.user, product: { type: null, attribute: 'blah' },
-                  location: 'location', time: 'Time Window', status: 'active',
-                  responses: [{ id: 1, responder: 'user1', status: 'Accepted', response: 'Yes' }, { id: 2, responder: 'user2', status: 'Pending', response: 'Yes' }, { id: 3, responder: 'user3', status: 'Declined', response: 'Maybe' }] }
-  })
+  return ({ user: state.auth, beacon: state.beacon })
 };
 
-class StartBeacon extends React.Component {
+const offset = 24;
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+  buttonText: {
+    marginLeft: offset,
+    fontSize: offset
+  }
+});
 
+class StartBeacon extends React.Component {
+  // TODO:
+  // Create initial Beacon object with current user, selected product type, status = 'pending'
+  // Save initial Beacon to Redux store (createBeacon)
+  // Get user geolocation and query for nearby responders (save filtered list of these users)
+  // Navigate to Map screen
+
+  state = { value: null }
   // cancelBeacon = () => {
   //   this.props.navigation.navigate('Profile')
   // }
+
+  addSelection = (selection) => {
+    console.log('adding', selection.text, 'to', this.props.beacon.product)
+    this.setState({ value: selection })
+  };
+
+  saveSelection = () => {
+    // console.log('saving', this.state.value.text, 'to', this.props.beacon.product)
+    let productType = this.state.value.text
+    // console.log(productType)
+    this.props.createBeacon(productType)
+    this.props.navigation.navigate('Map')
+    // set state.value to Redux Beacon Obj
+  }
 
   render() {
     // console.log(this.props)
     return (
       <View>
-        <Text>Welcome `{this.props.user.name}` - Select Product to Continue:</Text>
-        // Pad or Tampon Options Here: Input to beaconobj.product ->
-
-        <NextButton nextRoute='Map' nav={this.props.navigation}/>
+        <Text>Welcome {this.props.user.name} - Select Product to Continue:</Text>
+        <View style={styles.container}>
+          <RadButtons value={this.state.value} onSelection={this.addSelection}/>
+        </View>
+        <TouchableOpacity onPress={this.saveSelection}>
+          <Text style={styles.buttonText}>Next</Text>
+        </TouchableOpacity>
         <Text>or Cancel Beacon below:</Text>
         <CancelButton nav={this.props.navigation}/>
       </View>
@@ -34,4 +68,4 @@ class StartBeacon extends React.Component {
   };
 }
 
-export default connect(mapStateToProps)(StartBeacon);
+export default connect(mapStateToProps, { createBeacon })(StartBeacon);

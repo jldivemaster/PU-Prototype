@@ -5,8 +5,6 @@ const INITIAL_STATE = {
   user: null
 };
 
-console.log(SIGN_IN, SIGN_OUT)
-
 export default (state = INITIAL_STATE, action) => {
   switch(action.type) {
     case SIGN_IN:

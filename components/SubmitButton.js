@@ -10,6 +10,7 @@ class SubmitButton extends React.Component {
     if(this.props.alertMessage){
       alert(this.props.alertMessage)
     }
+    this.props.callback()
     this.props.nav.navigate(this.props.newRoute)
   };
 

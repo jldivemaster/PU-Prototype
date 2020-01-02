@@ -43,9 +43,9 @@ class StartBeacon extends React.Component {
 
   saveSelection = () => {
     // console.log('saving', this.state.value.text, 'to', this.props.beacon.product)
-    let productType = this.state.value.text
+    let input = { user: {...this.props.user}, productType: this.state.value.text }
     // console.log(productType)
-    this.props.createBeacon(productType)
+    this.props.createBeacon(input)
     this.props.navigation.navigate('Map')
     // set state.value to Redux Beacon Obj
   }

@@ -13,7 +13,7 @@ import { createMaterialTopTabNavigator, createBottomTabNavigator } from 'react-n
 // import Screens for Nav setup
 import Profile from './components/Profile';
 import Forum from './components/Forum';
-import Map from './components/Map';
+import LocationScreen from './components/LocationScreen';
 import StartBeacon from './components/StartBeacon';
 import Loading from './components/Loading';
 import Login from './components/Login';
@@ -46,7 +46,7 @@ const store = createStore(
 firebase.initializeApp(config);
 
 // ??????? How to set initial screen to Start Beacon (initialRouteName throws error)
-const BeaconStack = createStackNavigator({ StartBeacon: StartBeacon, Map: Map, LocationListScreen: LocationListScreen, RequestTimeScreen: RequestTimeScreen, RequestReviewScreen: RequestReviewScreen, RequestEditScreen: RequestEditScreen, LaunchBeacon: ActiveBeaconScreen })
+const BeaconStack = createStackNavigator({ StartBeacon: StartBeacon, LocationScreen: LocationScreen, LocationListScreen: LocationListScreen, RequestTimeScreen: RequestTimeScreen, RequestReviewScreen: RequestReviewScreen, RequestEditScreen: RequestEditScreen, LaunchBeacon: ActiveBeaconScreen })
 const Beacon = createAppContainer(BeaconStack);
 
 const TrackerSwitch = createMaterialTopTabNavigator({ Cycle: CycleView, Calendar: CalendarView, EditTrackerData: EditTrackerData }, { initialRouteName: 'Cycle', swipeEnabled: true, tabBarOptions: { activeTintColor: 'pink', inactiveTintColor: 'black' } })

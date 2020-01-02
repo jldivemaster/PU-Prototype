@@ -4,7 +4,7 @@ import { TouchableOpacity, Text, StyleSheet } from 'react-native';
 class CancelButton extends React.Component {
 
   handleCancelBeacon = () => {
-    // Navigate to Home Screen, clear out Beacon data object, & notify of cancellation!
+    // Navigate to Home Screen (leaving beacon stack), clear out Beacon data object, & alert user of cancellation!
 
     this.props.nav.navigate('Profile')
     // this.clearBeaconData().....

@@ -4,6 +4,11 @@ import CancelButton from './CancelBeacon';
 import NextButton from './NextButton';
 
 class RequestTimeScreen extends React.Component {
+  // TODO: Render Time Window Options and Real-Time Slider
+  // Can interact thru buttons, not slider
+  // On window selection, time populates on slider
+  // On Continue, save Time Window to Beacon Obj and navigate to Request Review Screen.
+  // Cancel Beacon button
 
   renderContent(){
     return(

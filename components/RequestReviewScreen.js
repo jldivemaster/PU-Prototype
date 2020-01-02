@@ -13,15 +13,24 @@ const mapStateToProps = (state) => {
 class RequestReviewScreen extends React.Component {
   // TODO:
   // Display state.beacon details
+  // Text Input Area for message: Save typing with local state (Does this have it's own submit button???)
+  // Render button to open Text Input instead of auto rendering it???
+  // Cancel Beacon Button
+  // Edit Detail Button for each Item
+
+  // On Edit Detail:
+  // jump back to Screen where that item was entered
+  // Each Screen will need appropriate logic and resubmission back to this Screen
+  // May need to change beacon navigator to a Switch
+  // Submit Edit -> Update Beacon Obj, rerender updated Review Screen
 
   // On Submit:
   // Edit state.beacon.message with text input
   // Edit state.beacon.status to 'active'
   // Trigger Push Notifications to matched users
   // Leave the beacon stack, reflect in bottom tab nav, alert user, and disable Create Beacon tab.
-  state = { message: 'additional message' }
 
-  // let message = this.state.message;
+  state = { message: 'additional message' }
 
   launch(input) {
     this.props.launchBeacon(input)
@@ -34,7 +43,7 @@ class RequestReviewScreen extends React.Component {
 
   renderBeacon(){
     let object = this.props.beacon.beaconObj;
-    console.log(object)
+    console.log(this.props)
     return(
       <View>
         <Text>User: {object.user.user.name}</Text>

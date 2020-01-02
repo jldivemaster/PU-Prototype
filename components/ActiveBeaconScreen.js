@@ -7,6 +7,13 @@ const mapStateToProps = (state) => {
 };
 
 class ActiveBeaconScreen extends React.Component {
+  // TODO:
+  // Render beacon details
+  // Hot render responses as they are submitted (sorted by 'Yes or Maybe')
+  // Render # of No responses??
+
+  // Each response can be selected to open to Detailed View
+  // Cancel Beacon button 
 
   renderResponses() {
     // return <Text>Responses</Text>
@@ -30,6 +37,7 @@ class ActiveBeaconScreen extends React.Component {
     return (
       <View>
         <Text>Active Beacon Details</Text>
+        <Text>Product Requested: {beacon.product.type}</Text>
         <Text>Location: {beacon.location}</Text>
         <Text>Time: {beacon.time}</Text>
         <Text>Message: {beacon.message}</Text>

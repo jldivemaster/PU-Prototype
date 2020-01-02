@@ -10,6 +10,12 @@ const mapStateToProps = (state) => {
 }
 
 class Profile extends Component {
+  // TODO: Render My Profile Info
+  // Details are editable (each with own edit button or 'Edit All')
+  // Start Beacon button in addition to bottom tab?
+  // Nav to Inbox/Activity/ActiveBeacon from here and/or in bottom tabs??
+  
+
 //   state = { name: '' }
 //
 // handleNameInput = name => this.setState({ name });

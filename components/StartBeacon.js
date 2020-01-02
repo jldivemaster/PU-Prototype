@@ -27,14 +27,13 @@ const styles = StyleSheet.create({
 class StartBeacon extends React.Component {
   // TODO:
   // Create initial Beacon object with current user, selected product type, status = 'pending'
+
   // Save initial Beacon to Redux store (createBeacon)
   // Get user geolocation and query for nearby responders (save filtered list of these users)
-  // Navigate to Map screen
+  // Navigate to Location Screen
+  // Cancel Beacon button? or just can back out?
 
   state = { value: null }
-  // cancelBeacon = () => {
-  //   this.props.navigation.navigate('Profile')
-  // }
 
   addSelection = (selection) => {
     console.log('adding', selection.text, 'to', this.props.beacon.product)
@@ -46,7 +45,7 @@ class StartBeacon extends React.Component {
     let input = { user: {...this.props.user}, productType: this.state.value.text }
     // console.log(productType)
     this.props.createBeacon(input)
-    this.props.navigation.navigate('Map')
+    this.props.navigation.navigate('LocationScreen')
     // set state.value to Redux Beacon Obj
   }
 
